@@ -32,3 +32,15 @@ for (let idx = 0; idx < marksList.length; idx++) {
 }
 
 console.log(marksList, newMarkList, newMarListForLoop);
+
+function filterMarks(marksList, callback) {
+    const newMarkList = [];
+
+    for (let idx = 0; idx < marksList.length; idx++) {
+        if (callback(marksList[idx], idx, marksList)) {
+            newMarkList.push(marksList[idx])
+        }
+    }
+
+    return newMarkList;
+}
