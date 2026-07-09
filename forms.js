@@ -3,6 +3,9 @@ function getFormValues(event) {
 
     const name = document.getElementById('name').value;
     const mark = document.getElementById('mp').value;
+    const [tbody, ...rest] = document.getElementsByTagName('tbody');
+    console.log(tbody);
+
 
     let error = false;
 
@@ -22,10 +25,18 @@ function getFormValues(event) {
     }
 
     if (!error && name.trim() && mark >= 0 && mark <= 100) {
-        document.getElementById('studentName').innerHTML = name;
+        // document.getElementById('studentName').innerHTML = name;
 
-        document.getElementById('studentMP').innerHTML = mark;
-
+        // document.getElementById('studentMP').innerHTML = mark;
+        tbody.insertAdjacentHTML('beforeend', `
+        <tr>
+            <td>${name}</td>
+            <td>${mark}<td>
+        </tr>
+        ` ) 
     }
-
+}
+function clearTable() {
+    const [tbody, ...rest] = document.getElementsByTagName('tbody');
+    tbody.innerHTML = "";
 }
