@@ -3,10 +3,10 @@
 <html>
   <head>
     <link rel="stylesheet" href="./table.css">
-    <script src="./forms.js"></script>
   </head>
   <body>
-    <form>
+    
+    <form id = "myForm">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" />
       <br />
@@ -18,13 +18,14 @@
       <p id="mpError"></p>
 
       <input type="submit" value="Submit" onclick="getFormValues(event)" />
+      <p id="userId">Name:</p>
 
       <!-- <div>
         <h1>Student Details</h1>
         <h5>Name: <span id="studentName"></span></h5>
         <h5>MP: <span id="studentMP"></span></h5>
       </div>  -->
-      <table id="myTable">
+      <table>
         <thead>
        <tr>
         <th>Name</th>
@@ -33,9 +34,11 @@
         </thead>
         <tbody id="studentrows">
         </tbody>
-        <input id="clear" type="reset" onclick="clearTable()"/>
       </table> 
+      <input id="clear" type="reset" onclick="clearTable()"/>
     </form>
-     
+     <script src="https://cdn.jsdelivr.net/npm/axios@1.18.1/dist/axios.min.js"></script> 
+    <script src="forms.js"></script>  
+   
   </body>
 </html>

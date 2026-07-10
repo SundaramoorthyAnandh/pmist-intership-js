@@ -1,3 +1,4 @@
+const form = document.getElementById("myForm");
 function getFormValues(event) {
     event.preventDefault();
 
@@ -5,8 +6,7 @@ function getFormValues(event) {
     const mark = document.getElementById('mp').value;
     const [tbody, ...rest] = document.getElementsByTagName('tbody');
     console.log(tbody);
-
-
+    
     let error = false;
 
     if (name.trim() === '') {
@@ -17,6 +17,25 @@ function getFormValues(event) {
         nameErr.style.color = 'red';
         error = true;
     }
+        const rows = tbody.getElementsByTagName("tr");
+
+
+let nameExists = false;
+
+for (let row of rows) {
+    const existingName = row.cells[0].textContent.trim();
+
+    if (existingName.toLowerCase() === name.trim().toLowerCase()) {
+        nameExists = true;
+        break;
+    }
+}
+
+if (nameExists) {
+    document.getElementById("nameError").innerHTML = "This name already exists!";
+    document.getElementById("nameError").style.color = "red";
+    return;
+}
 
     if (!mark || (mark < 0 || mark > 100)) {
         document.getElementById('mpError').innerHTML = 'Invalid Mark. Mark should be within 0 to 100';
@@ -35,8 +54,19 @@ function getFormValues(event) {
         </tr>
         ` ) 
     }
+    if (!error) {
+        form.reset();
+ }   
 }
+
 function clearTable() {
     const [tbody, ...rest] = document.getElementsByTagName('tbody');
     tbody.innerHTML = "";
 }
+fetch("https://dummyjson.com/users")
+.then(response => response.json())
+.then(data => {
+    const users = data.users[0].firstName;
+    console.log(users);
+    document.getElementById("userId").innerHTML = users;
+})
