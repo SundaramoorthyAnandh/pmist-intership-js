@@ -2,23 +2,43 @@
 
 <html>
   <head>
-    <script src="./forms.js"></script>
+    <link rel="stylesheet" href="./table.css">
   </head>
   <body>
-    <form>
+    
+    <form id = "myForm">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" />
       <br />
+      <p id="nameError"></p>
+
       <label for="mp">MP:</label>
       <input type="number" id="mp" name="mp" />
       <br />
-      <input type="submit" value="Submit" onclick="getFormValues(event)" />
+      <p id="mpError"></p>
 
-      <div>
+      <input type="submit" value="Submit" onclick="getFormValues(event)" />
+      <p id="userId">Name:</p>
+
+      <!-- <div>
         <h1>Student Details</h1>
         <h5>Name: <span id="studentName"></span></h5>
         <h5>MP: <span id="studentMP"></span></h5>
-      </div>
+      </div>  -->
+      <table>
+        <thead>
+       <tr>
+        <th>Name</th>
+        <th>Mark</th>
+       </tr> 
+        </thead>
+        <tbody id="studentrows">
+        </tbody>
+      </table> 
+      <input id="clear" type="reset" onclick="clearTable()"/>
     </form>
+     <script src="https://cdn.jsdelivr.net/npm/axios@1.18.1/dist/axios.min.js"></script> 
+    <script src="forms.js"></script>  
+   
   </body>
 </html>
